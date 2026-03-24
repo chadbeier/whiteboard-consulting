@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Whiteboard Consulting | Leadership, Change, Agility</title>
+  <link rel="icon" type="image/png" href="images/whiteboard-favicon.png" />
+  <link rel="shortcut icon" href="images/whiteboard-favicon.png" />
+  <meta
+    name="description"
+    content="Advisory support for leadership, change, and organizational agility."
+  />
+  <style>
+    :root {
+      --bg: #e8eef4;
+      --surface: rgba(255, 255, 255, 0.82);
+      --surface-strong: #f9fbfd;
+      --ink: #12263a;
+      --muted: #516579;
+      --line: rgba(18, 38, 58, 0.12);
+      --line-strong: rgba(18, 38, 58, 0.22);
+      --accent: #d4e2ef;
+      --accent-strong: #b4cada;
+      --shadow: 0 22px 64px rgba(18, 38, 58, 0.08);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-pill: 999px;
+      --max: 1040px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Avenir Next", Avenir, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(180, 202, 218, 0.72), transparent 28%),
+        linear-gradient(180deg, #f7fafe 0%, var(--bg) 52%, #dde6ee 100%);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    h1,
+    h2,
+    p {
+      margin: 0;
+    }
+
+    .wrap {
+      width: min(calc(100% - 40px), var(--max));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      padding: 24px 0 10px;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+      flex-shrink: 0;
+    }
+
+    .brand img {
+      width: min(320px, 40vw);
+      height: auto;
+      max-width: 100%;
+    }
+
+    .brand-name {
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .nav a,
+    .button,
+    .button-secondary {
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--line);
+    }
+
+    .nav a {
+      padding: 10px 14px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.48);
+    }
+
+    .nav a:hover,
+    .button-secondary:hover,
+    .service-pill:hover {
+      border-color: var(--line-strong);
+      background: rgba(255, 255, 255, 0.88);
+    }
+
+    .hero {
+      padding: 28px 0 24px;
+    }
+
+    .hero-panel,
+    .contact-panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-panel {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 36px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-panel::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      right: -90px;
+      top: -120px;
+      border-radius: 50%;
+      background: rgba(180, 202, 218, 0.4);
+      filter: blur(6px);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin-top: 18px;
+      font-size: clamp(2.6rem, 7vw, 5.1rem);
+      line-height: 0.94;
+      letter-spacing: -0.05em;
+      max-width: 9ch;
+    }
+
+    .intro {
+      margin-top: 18px;
+      max-width: 38rem;
+      color: var(--muted);
+      font-size: 1.06rem;
+    }
+
+    .hero-actions {
+      margin-top: 26px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button,
+    .button-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
+      font-weight: 600;
+      transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+    }
+
+    .button {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: #fff;
+    }
+
+    .button:hover,
+    .button-secondary:hover {
+      transform: translateY(-1px);
+    }
+
+    .button-secondary {
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    main section {
+      padding: 24px 0;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 22px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.7rem, 4vw, 2.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 40rem;
+    }
+
+    .services-panel {
+      padding: 28px;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--line);
+      background: rgba(249, 251, 253, 0.8);
+      box-shadow: var(--shadow);
+    }
+
+    .pill-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .service-pill {
+      min-height: 138px;
+      padding: 18px 20px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.82);
+      transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+    }
+
+    .service-pill:hover {
+      transform: translateY(-2px);
+    }
+
+    .service-pill h3 {
+      margin: 0 0 8px;
+      font-size: 1.32rem;
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+    }
+
+    .service-pill p {
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .contact-panel {
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .contact-panel p {
+      margin-top: 10px;
+      color: var(--muted);
+      max-width: 42rem;
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+
+    .footer {
+      padding: 8px 0 42px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    @media (max-width: 900px) {
+      .hero-panel,
+      .section-head,
+      .contact-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .pill-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .contact-actions {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .site-header {
+        padding-top: 18px;
+      }
+
+      .header-inner,
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-panel,
+      .services-panel,
+      .contact-panel {
+        padding: 22px;
+        border-radius: 24px;
+      }
+
+      .wrap {
+        width: min(calc(100% - 24px), var(--max));
+      }
+
+      .brand img {
+        width: min(260px, 72vw);
+      }
+
+      .pill-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="Whiteboard Consulting home">
+        <img src="images/whiteboard-logo-clean.png" alt="Whiteboard Consulting logo" />
+        
+      </a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-panel">
+          <div>
+
+            <h1>Leadership. Change. Agility.</h1>
+            <p class="intro">
+              Advisory support for leadership, change, and organizational agility.
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Core Services</h2>
+
+        </div>
+
+        <div class="services-panel">
+          <div class="pill-grid">
+            <article class="service-pill">
+              <h3>Fractional Leadership</h3>
+              <p>
+                Interim or part-time leadership support for teams, initiatives, or periods of transition.
+              </p>
+            </article>
+
+            <article class="service-pill">
+              <h3>Transformation</h3>
+              <p>
+                Support for shaping and guiding broader organizational transformation with clearer priorities and steadier execution.
+              </p>
+            </article>
+
+            <article class="service-pill">
+              <h3>Change Management</h3>
+              <p>
+                Practical guidance for planning, leading, and embedding change across people and operations.
+              </p>
+            </article>
+
+            <article class="service-pill">
+              <h3>Organizational Agility</h3>
+              <p>
+                Support for improving responsiveness, alignment, and how work moves through the organization.
+              </p>
+            </article>
+
+            <article class="service-pill">
+              <h3>Operating Model Design</h3>
+              <p>
+                Support for shaping roles, decision paths, and team structures so the organization can operate more clearly.
+              </p>
+            </article>
+
+            <article class="service-pill">
+              <h3>Scrum Training</h3>
+              <p>
+                Practical training for teams and leaders who want a clearer, more useful understanding of Scrum.
+              </p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="contact-panel">
+          <div>
+            <h2>Contact</h2>
+            <p>
+              If this aligns with what you’re working through, reach out.
+            </p>
+          </div>
+
+          <div class="contact-actions">
+            <a
+              class="button email-link"
+              href="#contact"
+              data-user="info"
+              data-domain="whiteboardconsulting.org"
+              aria-label="Email Whiteboard Consulting"
+            >Email</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div>&copy; 2026 Whiteboard Consulting LLC</div>
+    </div>
+  </footer>
+
+  <script>
+    for (const link of document.querySelectorAll(".email-link")) {
+      const user = link.dataset.user;
+      const domain = link.dataset.domain;
+
+      if (!user || !domain) continue;
+
+      const address = user + "@" + domain;
+      link.href = "mailto:" + address;
+      link.title = address;
+    }
+  </script>
+</body>
+</html>
