@@ -151,19 +151,6 @@
       position: relative;
     }
 
-    .hero-panel::after {
-      content: "";
-      position: absolute;
-      width: 260px;
-      height: 260px;
-      right: -90px;
-      top: -120px;
-      border-radius: 50%;
-      background: rgba(180, 202, 218, 0.4);
-      filter: blur(6px);
-      pointer-events: none;
-    }
-
     .eyebrow {
       display: inline-flex;
       align-items: center;
@@ -307,6 +294,15 @@
       flex-wrap: wrap;
       gap: 12px;
       justify-content: flex-end;
+    }
+
+    .contact-email {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .contact-email:hover {
+      text-decoration: underline;
     }
 
     .footer {
@@ -463,13 +459,7 @@
           </div>
 
           <div class="contact-actions">
-            <a
-              class="button email-link"
-              href="#contact"
-              data-user="info"
-              data-domain="whiteboardconsulting.org"
-              aria-label="Email Whiteboard Consulting"
-            >Email</a>
+            <p>info@whiteboardconsulting.org</p>
           </div>
         </div>
       </div>
@@ -481,18 +471,5 @@
       <div>&copy; 2026 Whiteboard Consulting LLC</div>
     </div>
   </footer>
-
-  <script>
-    for (const link of document.querySelectorAll(".email-link")) {
-      const user = link.dataset.user;
-      const domain = link.dataset.domain;
-
-      if (!user || !domain) continue;
-
-      const address = user + "@" + domain;
-      link.href = "mailto:" + address;
-      link.title = address;
-    }
-  </script>
 </body>
 </html>
